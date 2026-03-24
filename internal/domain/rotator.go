@@ -2,23 +2,21 @@ package domain
 
 import "errors"
 
-// === EXCEPTIONS (Domain Errors) ===
+// Custom errors for domain logic
 var (
-	ErrLogNotFound		= errors.New("Log file does not exist on the specified path")
-	ErrFileTooLarge		= errors.New("File is over allowed size")
-	ErrInvalidPolicy	= errors.New("Configured retention policy is not valid")
+	ErrLogNotFound   = errors.New("log file does not exist in the specified path")
+	ErrFileTooLarge  = errors.New("file exceeds the maximum allowed size")
+	ErrInvalidPolicy = errors.New("the configured retention policy is invalid")
 )
 
-// === MODELS ===
-// LogFile: entity we work with
+// log_file represents our core entity
 type LogFile struct {
-	path string
-	size int64
+	Path string
+	Size int64
 }
 
-// === INTERFACES ===
-// RotatorService defines which actions our rotator can perform.
-type RotatorService interface  {
-	check(path string, max_size int64) (*LogFile, error)
-	Rotate(file *LogFile) error
+// RotatorService defines the contract for our log rotator
+type RotatorService interface {
+	Check(path string, max_size int64) (*LogFile, error)
+	Rotate(log_file *LogFile) error
 }
