@@ -1,0 +1,15 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+shredder
+
+# OS Tools
+.DS_Store
+Thumbs.db
+
+# Test logs
+*.log
+*.zip
